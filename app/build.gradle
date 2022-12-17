@@ -40,4 +40,37 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    //Swipe Refresh Listener
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //Gson library
+    implementation 'com.google.code.gson:gson:2.9.1'
+
+
+    //Retrofit Dependency
+    def retrofit = '2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+
+    //OKHTTP Dependency
+    def okhttp = '4.10.0'
+    implementation "com.squareup.okhttp3:okhttp-bom:$okhttp"
+    implementation "com.squareup.okhttp3:okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor"
+
+    def glide = '4.13.2'
+    implementation "com.github.bumptech.glide:glide:$glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
+
+
+    def lifecycleVersion = "2.6.0-alpha01"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion"
+
+
+    def circleImageView = "3.1.0"
+    implementation "de.hdodenhof:circleimageview:$circleImageView"
 }
