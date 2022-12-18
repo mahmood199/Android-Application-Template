@@ -46,6 +46,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
+    def coreKtx = "1.9.0"
+    implementation("androidx.core:core-ktx:$coreKtx")
+
+    def activityKtx = "1.4.0"
+    implementation("androidx.activity:activity-ktx:$activityKtx")
+
+    def fragmentKtx = "1.4.0"
+    implementation("androidx.fragment:fragment-ktx:$fragmentKtx")
+
     //Swipe Refresh Listener
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
