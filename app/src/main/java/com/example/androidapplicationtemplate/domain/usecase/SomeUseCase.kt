@@ -1,4 +1,9 @@
 package com.example.androidapplicationtemplate.domain.usecase
 
-class SomeUseCase {
+import com.example.androidapplicationtemplate.data.repository.SomeRepository
+import javax.inject.Inject
+
+class SomeUseCase @Inject constructor(
+	someRepository: SomeRepository,
+) {
 }
