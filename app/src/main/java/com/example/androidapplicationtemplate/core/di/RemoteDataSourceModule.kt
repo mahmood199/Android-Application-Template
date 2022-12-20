@@ -2,8 +2,8 @@ package com.example.androidapplicationtemplate.core.di
 
 import com.example.androidapplicationtemplate.data.remote.remoteDataSource.SomeRemoteDataSource
 import com.example.androidapplicationtemplate.data.remote.remoteServices.SomeService
-import com.example.androidapplicationtemplate.sample.PostRemoteDataSource
-import com.example.androidapplicationtemplate.sample.PostService
+import com.example.androidapplicationtemplate.sample.data.PostRemoteDataSource
+import com.example.androidapplicationtemplate.sample.data.PostService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

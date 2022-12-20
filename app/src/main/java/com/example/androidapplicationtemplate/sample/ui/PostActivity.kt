@@ -1,12 +1,10 @@
-package com.example.androidapplicationtemplate.sample
+package com.example.androidapplicationtemplate.sample.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.androidapplicationtemplate.R
-import com.example.androidapplicationtemplate.ui.someFeature.SomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.example.androidapplicationtemplate.sample
+package com.example.androidapplicationtemplate.sample.data
 
 import javax.inject.Inject
 

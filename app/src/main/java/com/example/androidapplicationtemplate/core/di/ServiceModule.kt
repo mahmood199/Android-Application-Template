@@ -2,7 +2,7 @@ package com.example.androidapplicationtemplate.core.di
 
 import com.example.androidapplicationtemplate.core.network.RetrofitClient
 import com.example.androidapplicationtemplate.data.remote.remoteServices.SomeService
-import com.example.androidapplicationtemplate.sample.PostService
+import com.example.androidapplicationtemplate.sample.data.PostService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

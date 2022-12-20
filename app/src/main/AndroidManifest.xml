@@ -13,7 +13,7 @@
         android:name=".TemplateApplication"
         android:theme="@style/Theme.AndroidApplicationTemplate">
         <activity
-            android:name=".sample.PostActivity"
+            android:name=".sample.ui.PostActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,5 +1,6 @@
-package com.example.androidapplicationtemplate.sample
+package com.example.androidapplicationtemplate.sample.domain
 
+import com.example.androidapplicationtemplate.sample.data.PostEntity
 import javax.inject.Inject
 
 class GetPostsUseCase @Inject constructor(
