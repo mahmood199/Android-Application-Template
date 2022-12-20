@@ -2,8 +2,8 @@ package com.example.androidapplicationtemplate.core.di
 
 import com.example.androidapplicationtemplate.data.local.localDataSource.SomeLocalDataSource
 import com.example.androidapplicationtemplate.data.remote.remoteDataSource.SomeRemoteDataSource
-import com.example.androidapplicationtemplate.data.repository.SomeRepository
-import com.example.androidapplicationtemplate.domain.repositoryImpl.SomeRepositoryImpl
+import com.example.androidapplicationtemplate.domain.repository.SomeRepository
+import com.example.androidapplicationtemplate.data.repositoryImpl.SomeRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

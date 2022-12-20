@@ -1,6 +1,6 @@
 package com.example.androidapplicationtemplate.core.di
 
-import com.example.androidapplicationtemplate.data.repository.SomeRepository
+import com.example.androidapplicationtemplate.domain.repository.SomeRepository
 import com.example.androidapplicationtemplate.domain.usecase.SomeUseCase
 import dagger.Module
 import dagger.Provides
