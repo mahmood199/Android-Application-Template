@@ -2,6 +2,8 @@ package com.example.androidapplicationtemplate.core.di
 
 import com.example.androidapplicationtemplate.domain.repository.SomeRepository
 import com.example.androidapplicationtemplate.domain.usecase.SomeUseCase
+import com.example.androidapplicationtemplate.sample.GetPostsUseCase
+import com.example.androidapplicationtemplate.sample.PostRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,5 +19,9 @@ object UseCaseModule {
 		someRepository: SomeRepository,
 	): SomeUseCase = SomeUseCase(someRepository)
 
+	@Provides
+	fun provideGetPostUseCase(
+		postRepository: PostRepository,
+	): GetPostsUseCase = GetPostsUseCase(postRepository)
 
 }
