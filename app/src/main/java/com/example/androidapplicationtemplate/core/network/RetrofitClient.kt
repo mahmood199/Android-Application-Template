@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
 
 	private lateinit var retrofit: Retrofit
-	const val BASE_URL = ""
+	const val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
 	fun getClient(): Retrofit {
 		return if (this::retrofit.isInitialized)
