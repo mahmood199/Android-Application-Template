@@ -1,5 +1,6 @@
 package com.example.androidapplicationtemplate.core.di
 
+import com.example.androidapplicationtemplate.data.local.dao.SomeDao
 import com.example.androidapplicationtemplate.data.local.localDataSource.SomeLocalDataSource
 import dagger.Module
 import dagger.Provides
@@ -11,8 +12,8 @@ import dagger.hilt.components.SingletonComponent
 object LocalDataSourceModule {
 
 	@Provides
-	fun provideLocalDataSource(): SomeLocalDataSource {
-		return SomeLocalDataSource()
+	fun provideLocalDataSource(someDao: SomeDao): SomeLocalDataSource {
+		return SomeLocalDataSource(someDao)
 	}
 
 }
