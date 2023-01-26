@@ -1,5 +1,6 @@
 package com.example.androidapplicationtemplate.core.di
 
+import com.example.androidapplicationtemplate.core.local.SomeDatabase
 import com.example.androidapplicationtemplate.data.local.dao.SomeDao
 import dagger.Module
 import dagger.Provides
@@ -11,8 +12,8 @@ import dagger.hilt.components.SingletonComponent
 object DaoModule {
 
 	@Provides
-	fun providesSomeDao(): SomeDao {
-		return SomeDao()
+	fun providesSomeDao(someDatabase: SomeDatabase): SomeDao {
+		return someDatabase.someDao()
 	}
 
 }
