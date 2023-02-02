@@ -35,8 +35,8 @@ class GenericAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
-            is ViewHolder1 -> holder.bindData(list[position] as Entity1)
-            is ViewHolder2 -> holder.bindData(list[position] as Entity2)
+            is ViewHolder1 -> holder.bindData(list[position] as Entity1, clickAction)
+            is ViewHolder2 -> holder.bindData(list[position] as Entity2, clickAction)
         }
     }
 
@@ -59,9 +59,12 @@ class GenericAdapter(
 
     inner class ViewHolder1(private val binding : ItemSomeLayout1Binding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindData(entity1: Entity1) {
+        fun bindData(entity1: Entity1, clickAction: (RecyclerViewItemClickAction) -> Unit) {
             binding.apply {
                 tvSomeText1.text = entity1.someValue
+                root.setOnClickListener {
+                    clickAction(RecyclerViewItemClickAction.ClickInterceptorOne(1))
+                }
             }
         }
 
@@ -69,9 +72,12 @@ class GenericAdapter(
 
     inner class ViewHolder2(private val binding : ItemSomeLayout2Binding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindData(entity1: Entity2) {
+        fun bindData(entity1: Entity2, clickAction: (RecyclerViewItemClickAction) -> Unit) {
             binding.apply {
                 tvSomeText2.text = entity1.someValue
+                root.setOnClickListener {
+                    clickAction(RecyclerViewItemClickAction.ClickInterceptorTwo(2))
+                }
             }
         }
 

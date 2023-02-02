@@ -7,4 +7,16 @@
     android:background="@color/white"
     tools:context=".ui.someFeature.SomeActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_some"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_some_layout_1"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
