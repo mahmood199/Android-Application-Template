@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidApplicationTemplate</string>
+    <string name="some_text">Some Text</string>
 </resources>
