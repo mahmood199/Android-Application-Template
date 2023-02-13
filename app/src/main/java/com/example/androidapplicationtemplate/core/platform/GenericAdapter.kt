@@ -21,20 +21,30 @@ class GenericAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            R.layout.item_some_layout_1 -> ViewHolder1(ItemSomeLayout1Binding.inflate(
-                LayoutInflater.from(parent.context)
-            ))
-            R.layout.item_some_layout_2 -> ViewHolder2(ItemSomeLayout2Binding.inflate(
-                LayoutInflater.from(parent.context)
-            ))
-            else -> ViewHolder1(ItemSomeLayout1Binding.inflate(
-                LayoutInflater.from(parent.context)
-            ))
+            R.layout.item_some_layout_1 -> ViewHolder1(
+                ItemSomeLayout1Binding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+            R.layout.item_some_layout_2 -> ViewHolder2(
+                ItemSomeLayout2Binding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+            else -> ViewHolder1(
+                ItemSomeLayout1Binding.inflate(
+                    LayoutInflater.from(parent.context)
+                )
+            )
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder) {
+        when (holder) {
             is ViewHolder1 -> holder.bindData(list[position] as Entity1, clickAction)
             is ViewHolder2 -> holder.bindData(list[position] as Entity2, clickAction)
         }
@@ -45,7 +55,7 @@ class GenericAdapter(
     override fun getItemViewType(position: Int): Int {
         return if (list[position] is Entity1)
             R.layout.item_some_layout_1
-        else if(list[position] is Entity2)
+        else if (list[position] is Entity2)
             R.layout.item_some_layout_2
         else
             R.layout.item_some_layout_1
@@ -57,7 +67,8 @@ class GenericAdapter(
         notifyItemRangeChanged(size, newItems.size)
     }
 
-    inner class ViewHolder1(private val binding : ItemSomeLayout1Binding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder1(private val binding: ItemSomeLayout1Binding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bindData(entity1: Entity1, clickAction: (RecyclerViewItemClickAction) -> Unit) {
             binding.apply {
@@ -70,7 +81,8 @@ class GenericAdapter(
 
     }
 
-    inner class ViewHolder2(private val binding : ItemSomeLayout2Binding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder2(private val binding: ItemSomeLayout2Binding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bindData(entity1: Entity2, clickAction: (RecyclerViewItemClickAction) -> Unit) {
             binding.apply {
