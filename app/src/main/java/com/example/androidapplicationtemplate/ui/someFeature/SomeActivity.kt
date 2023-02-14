@@ -1,20 +1,14 @@
 package com.example.androidapplicationtemplate.ui.someFeature
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.androidapplicationtemplate.R
-import com.example.androidapplicationtemplate.core.platform.AdapterItem
 import com.example.androidapplicationtemplate.core.platform.GenericAdapter
 import com.example.androidapplicationtemplate.core.platform.RecyclerViewItemClickAction
-import com.example.androidapplicationtemplate.data.models.entity.Entity1
-import com.example.androidapplicationtemplate.data.models.entity.Entity2
 import com.example.androidapplicationtemplate.databinding.ActivitySomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -36,6 +30,9 @@ class SomeActivity : AppCompatActivity() {
 			is RecyclerViewItemClickAction.ClickInterceptorTwo -> {
 				Toast.makeText(this, "${it.viewType} clicked", Toast.LENGTH_SHORT).show()
 			}
+			RecyclerViewItemClickAction.ClickInterceptorThree -> {
+				Toast.makeText(this, "Nested Rv item clicked", Toast.LENGTH_SHORT).show()
+			}
 		}
 	}
 
@@ -47,26 +44,7 @@ class SomeActivity : AppCompatActivity() {
 	}
 
 	private fun addItemsToList() {
-		val list = mutableListOf<AdapterItem>()
-		list.add(Entity1("View 1"))
-		list.add(Entity2("View 2"))
-		list.add(Entity1("View 1"))
-		list.add(Entity2("View 2"))
-		list.add(Entity1("View 1"))
-		list.add(Entity2("View 2"))
-		list.add(Entity1("View 1"))
-		list.add(Entity2("View 2"))
-		list.add(Entity1("View 1"))
-		list.add(Entity2("View 2"))
-		list.add(Entity1("View 1"))
-		list.add(Entity2("View 2"))
-		list.add(Entity1("View 1"))
-		list.add(Entity2("View 2"))
-		list.add(Entity1("View 1"))
-		list.add(Entity2("View 2"))
-		list.add(Entity1("View 1"))
-		list.add(Entity2("View 2"))
-		adapter.addItems(list)
+		adapter.addItems(ListHelperClass.getList())
 		binding.apply {
 			rvSome.adapter = adapter
 		}
