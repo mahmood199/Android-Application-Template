@@ -143,7 +143,7 @@ class GenericAdapter(
         }
 
         private fun restoreScrollState(holder: GenericAdapter.ViewHolder3) {
-            val key = list[holder.adapterPosition].toString()
+            val key = list[holder.adapterPosition].toString() + "${holder.adapterPosition}"
             val state = scrollStates[key]
             if (state != null) {
                 holder.layoutManager.onRestoreInstanceState(state)
@@ -169,7 +169,7 @@ class GenericAdapter(
     override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
         super.onViewRecycled(holder)
         if (holder is ViewHolder3) {
-            val key = list[holder.adapterPosition].toString()
+            val key = list[holder.adapterPosition].toString() + "${holder.adapterPosition}"
             scrollStates[key] = holder.layoutManager.onSaveInstanceState()
         }
     }
