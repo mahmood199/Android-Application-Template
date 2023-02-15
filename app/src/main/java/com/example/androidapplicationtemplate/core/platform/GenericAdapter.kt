@@ -129,15 +129,15 @@ class GenericAdapter(
                 false)
         }
 
-        val nestedRecyclerView by lazy {
-            RecyclerView(binding.root.context)
-        }
+        lateinit var innerAdapter : GenericAdapter
 
         fun bindData(entity3: Entity3, clickAction: (RecyclerViewItemClickAction) -> Unit) {
             with(binding) {
-                rvNested.adapter = GenericAdapter {
+                rvNested.layoutManager = layoutManager
+                innerAdapter = GenericAdapter {
                     clickAction(RecyclerViewItemClickAction.ClickInterceptorThree)
                 }
+                rvNested.adapter = innerAdapter
                 (rvNested.adapter as GenericAdapter).addItems(entity3.values)
                 val lastSeenFirstPosition = positionList.get(adapterPosition, 0)
                 if (lastSeenFirstPosition >= 0) {
@@ -163,7 +163,7 @@ class GenericAdapter(
     override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
         if(holder is ViewHolder3) {
             val position = holder.adapterPosition
-            val firstVisiblePosition = holder.layoutManager.findFirstVisibleItemPosition()
+            val firstVisiblePosition = holder.layoutManager.findFirstCompletelyVisibleItemPosition()
             positionList.put(position, firstVisiblePosition)
         }
         super.onViewRecycled(holder)
