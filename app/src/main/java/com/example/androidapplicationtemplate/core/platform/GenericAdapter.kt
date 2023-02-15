@@ -1,8 +1,10 @@
 package com.example.androidapplicationtemplate.core.platform
 
 import android.content.Context
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidapplicationtemplate.R
 import com.example.androidapplicationtemplate.data.models.entity.Entity1
@@ -23,6 +25,7 @@ class GenericAdapter(
     }
 
     private val list = mutableListOf<AdapterItem>()
+    private val scrollStates = hashMapOf<String, Parcelable?>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -117,12 +120,35 @@ class GenericAdapter(
     inner class ViewHolder3(private val binding: ItemSomeLayout3Binding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        val layoutManager by lazy {
+            LinearLayoutManager(
+                binding.root.context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+        }
+
+        lateinit var innerAdapter: GenericAdapter
+
         fun bindData(entity3: Entity3, clickAction: (RecyclerViewItemClickAction) -> Unit) {
             with(binding) {
-                rvNested.adapter = GenericAdapter {
+                rvNested.layoutManager = layoutManager
+                innerAdapter = GenericAdapter {
                     clickAction(RecyclerViewItemClickAction.ClickInterceptorThree)
                 }
+                rvNested.adapter = innerAdapter
                 (rvNested.adapter as GenericAdapter).addItems(entity3.values)
+                restoreScrollState(this@ViewHolder3)
+            }
+        }
+
+        private fun restoreScrollState(holder: GenericAdapter.ViewHolder3) {
+            val key = list[holder.adapterPosition].toString() + "${holder.adapterPosition}"
+            val state = scrollStates[key]
+            if (state != null) {
+                holder.layoutManager.onRestoreInstanceState(state)
+            } else {
+                holder.layoutManager.scrollToPosition(0)
             }
         }
     }
@@ -137,6 +163,14 @@ class GenericAdapter(
                 }
                 tvNestedItem.text = entity4.someValue
             }
+        }
+    }
+
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        super.onViewRecycled(holder)
+        if (holder is ViewHolder3) {
+            val key = list[holder.adapterPosition].toString() + "${holder.adapterPosition}"
+            scrollStates[key] = holder.layoutManager.onSaveInstanceState()
         }
     }
 
