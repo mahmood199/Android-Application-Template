@@ -25,6 +25,10 @@ class GenericAdapter(
     }
 
     private val list = mutableListOf<AdapterItem>()
+    /**
+     * Source for saving nested recyclerview state
+     * https://rubensousa.com/2019/08/27/saving_scroll_state_of_nested_recyclerviews/
+     */
     private val scrollStates = hashMapOf<String, Parcelable?>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
