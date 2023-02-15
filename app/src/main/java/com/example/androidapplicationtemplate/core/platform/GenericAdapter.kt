@@ -1,8 +1,10 @@
 package com.example.androidapplicationtemplate.core.platform
 
 import android.content.Context
+import android.util.SparseIntArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidapplicationtemplate.R
 import com.example.androidapplicationtemplate.data.models.entity.Entity1
@@ -14,6 +16,7 @@ import com.example.androidapplicationtemplate.databinding.ItemSomeLayout2Binding
 import com.example.androidapplicationtemplate.databinding.ItemSomeLayout3Binding
 import com.example.androidapplicationtemplate.databinding.NestedHorizontalRecyclerviewItemsBinding
 
+
 class GenericAdapter(
     val clickAction: (RecyclerViewItemClickAction) -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -23,6 +26,8 @@ class GenericAdapter(
     }
 
     private val list = mutableListOf<AdapterItem>()
+    private val positionList = SparseIntArray()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -117,17 +122,32 @@ class GenericAdapter(
     inner class ViewHolder3(private val binding: ItemSomeLayout3Binding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        val layoutManager by lazy {
+            LinearLayoutManager(
+                binding.root.context,
+                LinearLayoutManager.HORIZONTAL,
+                false)
+        }
+
+        val nestedRecyclerView by lazy {
+            RecyclerView(binding.root.context)
+        }
+
         fun bindData(entity3: Entity3, clickAction: (RecyclerViewItemClickAction) -> Unit) {
             with(binding) {
                 rvNested.adapter = GenericAdapter {
                     clickAction(RecyclerViewItemClickAction.ClickInterceptorThree)
                 }
                 (rvNested.adapter as GenericAdapter).addItems(entity3.values)
+                val lastSeenFirstPosition = positionList.get(adapterPosition, 0)
+                if (lastSeenFirstPosition >= 0) {
+                    layoutManager.scrollToPositionWithOffset(lastSeenFirstPosition, 0)
+                }
             }
         }
     }
 
-    class ViewHolder4(private val binding: NestedHorizontalRecyclerviewItemsBinding) :
+    inner class ViewHolder4(private val binding: NestedHorizontalRecyclerviewItemsBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindData(entity4: Entity4, clickAction: (RecyclerViewItemClickAction) -> Unit) {
@@ -138,6 +158,15 @@ class GenericAdapter(
                 tvNestedItem.text = entity4.someValue
             }
         }
+    }
+
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        if(holder is ViewHolder3) {
+            val position = holder.adapterPosition
+            val firstVisiblePosition = holder.layoutManager.findFirstVisibleItemPosition()
+            positionList.put(position, firstVisiblePosition)
+        }
+        super.onViewRecycled(holder)
     }
 
 
