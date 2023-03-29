@@ -1,7 +1,11 @@
 package com.example.androidapplicationtemplate.ui.someFeature
 
+import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +24,13 @@ class SomeActivity : AppCompatActivity() {
 	}
 	private val adapter = GenericAdapter {
 		handleClickListener(it)
+	}
+	private val resultContracts = registerForActivityResult(
+		ActivityResultContracts.StartActivityForResult()
+	){ result: ActivityResult ->
+		if (result.resultCode == Activity.RESULT_OK) {
+
+		}
 	}
 
 	private fun handleClickListener(it: RecyclerViewItemClickAction) {
